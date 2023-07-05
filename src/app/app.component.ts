@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
+  //templateUrl: './app.component.html',
   template: `<p>Hello world!</p>
   <hr>
   <div style= "background-color: aqua;">
@@ -30,6 +30,8 @@ import { Component } from '@angular/core';
   <ul>
     <li *appCustomFor="names; let isim; let idx = index">{{isim}} - {{idx}}</li>
   </ul>
+  //Component Life Cycle Hook
+  <app-example data="merhaba">content</app-example>
 `,
 })
 export class AppComponent {
