@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, NgForm, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -34,7 +34,7 @@ import { NgForm } from '@angular/forms';
   //Component Life Cycle Hook
   <app-example data="merhaba">content</app-example><br>
   <hr>
-  //Template-Drive Form
+  //Template-Driven Form
   <form #frm="ngForm" (ngSubmit)="submitFonk(frm.value)">
     <input type="text" name="name" placeholder="Name" ngModel><br>
     <input type="text" name="surname" placeholder="Surname" ngModel><br>
@@ -48,6 +48,21 @@ import { NgForm } from '@angular/forms';
 
     <button>Send</button>
   </form>
+  <br>
+  <hr>
+  //Model-Driven Form
+  <form [formGroup]="frmm" (ngSubmit)="submitFonkModel()">
+    <input type="text" placeholder="Name" formControlName="name"><br>
+    <input type="text" placeholder="Surname" formControlName="surname"><br>
+    <input type="email" placeholder="Email" formControlName="email"><br>
+    <input type="tel" placeholder="Tel" formControlName="tel"><br>
+    <div formGroupName="address">
+      <input type="text" name="country" placeholder="country" formControlName="country"><br>
+      <input type="text" name="city" placeholder="city" formControlName="city"><br>
+      <input type="text" name="address" placeholder="address" formControlName="address"><br>
+    </div>
+    <button>Send</button>
+  </form>
 `,
 })
 export class AppComponent {
@@ -58,7 +73,7 @@ export class AppComponent {
   @ViewChild("frm", { static: true })
   frm!: NgForm;
 
-  submitFonk(data: any): void{
+  submitFonk(data: any): void {
     console.log(`Value: ${this.frm.value}`);
     console.log(`Valid: ${this.frm.valid}`);
     console.log(`Touched: ${this.frm.touched}`);
@@ -67,7 +82,36 @@ export class AppComponent {
     console.log(this.frm);
     console.log(this.frm.form);
     console.log(this.frm.controls);
+  }
 
-    
+  frmm!: FormGroup;
+  constructor(private formBuilder: FormBuilder) {
+    this.frmm = formBuilder.group({
+      name: ["", Validators.required],
+      surname: ["", Validators.required],
+      email: ["", [Validators.required, Validators.email]],
+      tel: [""],
+      address: formBuilder.group({
+        country: [""],
+        city: [""],
+        address: [""]
+      })
+    })
+
+    this.frmm.valueChanges.subscribe({
+      next: data => {
+        console.log(data);
+      }
+    })
+
+    this.frmm.statusChanges.subscribe({
+      next: data => {
+        console.log(data);
+      }
+    })
+  }
+  
+  submitFonkModel() {
+    console.log(this.frmm.value);
   }
 }
