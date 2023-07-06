@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, NgForm, Validators } from '@angular/forms';
+import { capitalLetterPValidation, capitalLetterValidation, matchPassword } from './validators/funcs';
 
 @Component({
   selector: 'app-root',
@@ -11,9 +12,9 @@ import { FormBuilder, FormGroup, FormsModule, NgForm, Validators } from '@angula
   </div>
   //two-way data binding
   <br>
-  <input type="text" [(ngModel)]="name"><br>
-  <input type="text" [(ngModel)]="name"><br>
-  {{name}}
+  <input type="text" [(ngModel)]="namee"><br>
+  <input type="text" [(ngModel)]="namee"><br>
+  {{namee}}
   <br>
   //structural custom if directive test
   <div *appCustomIf="true">
@@ -53,13 +54,29 @@ import { FormBuilder, FormGroup, FormsModule, NgForm, Validators } from '@angula
   //Model-Driven Form
   <form [formGroup]="frmm" (ngSubmit)="submitFonkModel()">
     <input type="text" placeholder="Name" formControlName="name"><br>
+    <div *ngIf="!name?.valid && (name?.dirty || name?.touched)">
+      {{name?.errors | json}}
+    </div>
     <input type="text" placeholder="Surname" formControlName="surname"><br>
+    <div *ngIf="!surname?.valid && (surname?.dirty || surname?.touched)">
+      {{surname?.errors | json}}
+    </div>
     <input type="email" placeholder="Email" formControlName="email"><br>
+    <div *ngIf="!email?.valid && (email?.dirty || email?.touched)">
+      {{email?.errors | json}}
+    </div>
     <input type="tel" placeholder="Tel" formControlName="tel"><br>
     <div formGroupName="address">
       <input type="text" name="country" placeholder="country" formControlName="country"><br>
       <input type="text" name="city" placeholder="city" formControlName="city"><br>
       <input type="text" name="address" placeholder="address" formControlName="address"><br>
+    </div>
+    <div formGroupName="password">
+      <input type="text" name="password" placeholder="password" formControlName="password"><br>
+      <input type="text" name="passwordConfirm" placeholder="passwordConfirm" formControlName="passwordConfirm"><br>
+      <div *ngIf="!password?.valid && (password?.dirty || password?.touched)">
+        {{password?.errors | json}}
+    </div>
     </div>
     <button>Send</button>
   </form>
@@ -67,7 +84,7 @@ import { FormBuilder, FormGroup, FormsModule, NgForm, Validators } from '@angula
 })
 export class AppComponent {
   title = 'FirstAngularProject';
-  name: string = "";
+  namee: string = "";
   names: string[] = ["Fatma", "Özdemir", "Öztürk"];
 
   @ViewChild("frm", { static: true })
@@ -87,15 +104,19 @@ export class AppComponent {
   frmm!: FormGroup;
   constructor(private formBuilder: FormBuilder) {
     this.frmm = formBuilder.group({
-      name: ["", Validators.required],
-      surname: ["", Validators.required],
+      name: ["",[Validators.required, Validators.minLength(3), capitalLetterValidation]],
+      surname: ["", [Validators.required, capitalLetterPValidation(3)]],
       email: ["", [Validators.required, Validators.email]],
       tel: [""],
       address: formBuilder.group({
         country: [""],
         city: [""],
         address: [""]
-      })
+      }),
+      password: formBuilder.group({
+        password: ["", Validators.required],
+        passwordConfirm: ["", Validators.required]
+      }, {validators: [matchPassword()]}),
     })
 
     this.frmm.valueChanges.subscribe({
@@ -110,7 +131,29 @@ export class AppComponent {
       }
     })
   }
+
   
+  get name(){
+    return this.frmm.get("name");
+  }
+
+  get surname(){
+    return this.frmm.get("surname");
+  }
+
+  get email(){
+    return this.frmm.get("email");
+  }
+
+  public get password(){
+    return this.frmm.get("password");
+  }
+
+  public get passwordConfirm(){
+    return this.frmm.get("passwordConfirm");
+  }
+  
+
   submitFonkModel() {
     console.log(this.frmm.value);
   }
