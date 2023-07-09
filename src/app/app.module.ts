@@ -16,6 +16,7 @@ import { Parent3Component } from './child_to_child/parent3/parent3.component';
 import { Child3Component } from './child_to_child/child3/child3.component';
 import { Child31Component } from './child_to_child/child31/child31.component';
 import { ExampleComponent } from './component/example/example.component';
+import { ProductService } from './productservice';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import { ExampleComponent } from './component/example/example.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
