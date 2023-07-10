@@ -16,7 +16,7 @@ import { Parent3Component } from './child_to_child/parent3/parent3.component';
 import { Child3Component } from './child_to_child/child3/child3.component';
 import { Child31Component } from './child_to_child/child31/child31.component';
 import { ExampleComponent } from './component/example/example.component';
-import { ProductService } from './productservice';
+import { AProductService, BProductService, ProductService } from './productservice';
 
 @NgModule({
   declarations: [
@@ -40,7 +40,14 @@ import { ProductService } from './productservice';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [ProductService],//DI Token - default type token
+  providers: [ProductService,//DI Token - default type token
+    {provide: "example", useValue: "merhaba"},
+    {provide: "funcExample", useValue: () => {
+      return "hello";
+    }},
+    {provide: "AProductService", useFactory: (example: string) => {
+      return example == "merhaba" ? new AProductService() :  new BProductService();
+    }, deps: ["example"]}],
   //providers : [{provide: ProductService, useClass: ProductService}] //typen token
   //providers : [{provide: "productService", useClass: ProductService} //string token
   //providers : [{provide: productServiceIT, useClass: ProductService} //injection token

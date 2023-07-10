@@ -33,3 +33,29 @@ export class ProductNoProviders {
 	name!: string;
 	quantity!: number;
 }
+
+export class AProductService {
+	getAProducts() : AProduct[] {
+		return [
+			{ name: "AProduct", quantity: 10 }
+		];
+	}
+}
+
+export class AProduct {
+	name!: string;
+	quantity!: number;
+}
+
+export class BProductService {
+	getBProducts() : BProduct[] {
+		return [
+			{ name: "BProduct", quantity: 10 }
+		];
+	}
+}
+
+export class BProduct {
+	name!: string;
+	quantity!: number;
+}

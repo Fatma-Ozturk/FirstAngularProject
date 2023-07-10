@@ -1,7 +1,7 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, Inject, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, NgForm, Validators } from '@angular/forms';
 import { capitalLetterPValidation, capitalLetterValidation, matchPassword } from './validators/funcs';
-import { ProductService, ProductServiceNoProviders } from './productservice';
+import { AProductService, ProductService, ProductServiceNoProviders } from './productservice';
 
 @Component({
   selector: 'app-root',
@@ -103,9 +103,17 @@ export class AppComponent {
   }
 
   frmm!: FormGroup;
-  constructor(private formBuilder: FormBuilder, private productService: ProductService, private productNoProviders: ProductServiceNoProviders) {
+  constructor(private formBuilder: FormBuilder,
+    private productService: ProductService,
+    private productNoProviders: ProductServiceNoProviders,
+    @Inject("example") value: string,
+    @Inject("funcExample") functionExample: Function,
+    @Inject("AProductService") private AProductService : AProductService){
     //@Inject("productService") private productService: ProductService //string token injected
     //@Inject(productServiceIT) private productService: PorductService //injection token injected
+    console.log(value);
+    console.log(functionExample());
+    console.log(AProductService.getAProducts());
     //dependency injection
     console.log(productService.getProducts());
     //dependency injection without providers
