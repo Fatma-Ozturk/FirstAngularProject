@@ -104,11 +104,13 @@ export class AppComponent {
 
   frmm!: FormGroup;
   constructor(private formBuilder: FormBuilder, private productService: ProductService, private productNoProviders: ProductServiceNoProviders) {
+    //@Inject("productService") private productService: ProductService //string token injected
+    //@Inject(productServiceIT) private productService: PorductService //injection token injected
     //dependency injection
     console.log(productService.getProducts());
     //dependency injection without providers
     console.log(productNoProviders.getProductsNoProviders());
-    
+
     this.frmm = formBuilder.group({
       name: ["",[Validators.required, Validators.minLength(3), capitalLetterValidation]],
       surname: ["", [Validators.required, capitalLetterPValidation(3)]],

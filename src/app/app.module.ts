@@ -40,7 +40,10 @@ import { ProductService } from './productservice';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [ProductService],
+  providers: [ProductService],//DI Token - default type token
+  //providers : [{provide: ProductService, useClass: ProductService}] //typen token
+  //providers : [{provide: "productService", useClass: ProductService} //string token
+  //providers : [{provide: productServiceIT, useClass: ProductService} //injection token
   bootstrap: [AppComponent]
 })
 export class AppModule { }
