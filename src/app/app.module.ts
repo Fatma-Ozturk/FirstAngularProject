@@ -26,6 +26,8 @@ import { ContactComponent } from './component/contact/contact.component';
 import { ROUTES, RouterModule } from '@angular/router';
 import { routes } from './routes/route';
 import { ErrorComponent } from './component/error/error.component';
+import { ProductComponent } from './component/product/product.component';
+import { ProductDetailComponent } from './component/product-detail/product-detail.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,9 @@ import { ErrorComponent } from './component/error/error.component';
     ReadUserComponent,
     AboutComponent,
     ContactComponent,
-    ErrorComponent
+    ErrorComponent,
+    ProductComponent,
+    ProductDetailComponent
   ],
   imports: [
     BrowserModule,

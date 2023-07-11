@@ -91,15 +91,22 @@ import { RandomService } from './random.service';
   <app-create-user></app-create-user> <br>
   <app-read-user></app-read-user> <br> 
   //Routing
-  <br> <a routerLinkActive="active" routerLink="home">Home</a> | <a routerLink="about">About</a> | <a routerLink="contact">Contact</a>
+  <br> 
+  <a routerLinkActive="active" routerLink="home">Home</a> |
+  <a routerLink="about">About</a> |
+  <a routerLink="contact">Contact</a>
   <br>
   <router-outlet></router-outlet>
   <br> <hr>
-  <button (click)="go()">Go</button>
+  <button (click)="go()">Go</button> <br>
+  <hr> <br>
+  //Child/Nested Routes
+  <br> <a routerLink="product">Product</a> <br>
+  <router-outlet></router-outlet> 
 
 
 `,
-styles: [".active{color:red;}"],
+  styles: [".active{color:red;}"],
 })
 export class AppComponent {
   title = 'FirstAngularProject';
@@ -195,6 +202,6 @@ export class AppComponent {
 
   //html 5 routing
   go() {
-      history.pushState({message: "Hello"}, "title", "/a/b");
+    history.pushState({ message: "Hello" }, "title", "/a/b");
   }
 }
