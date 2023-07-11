@@ -8,6 +8,8 @@ import { ProductComponent } from './component/product/product.component';
 import { ProductDetailComponent } from './component/product-detail/product-detail.component';
 import { ProductSpecComponent } from './component/product-spec/product-spec.component';
 import { ProductOverviewComponent } from './component/product-overview/product-overview.component';
+import { AqueryComponent } from './component/aquery/aquery.component';
+import { BqueryComponent } from './component/bquery/bquery.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "/home", pathMatch: "full"},
@@ -21,6 +23,11 @@ const routes: Routes = [
       children: [{path: "", redirectTo:"overview", pathMatch: 'full'},
         {path: "spec", component: ProductSpecComponent}, 
         {path: "overview", component: ProductOverviewComponent}]}]},
+
+  {path: "a", component: AqueryComponent},
+  {path: "b", component: BqueryComponent},
+
+
   
 	{ path: "**", component: ErrorComponent},
 ];

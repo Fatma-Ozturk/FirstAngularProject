@@ -102,9 +102,11 @@ import { RandomService } from './random.service';
   <hr> <br>
   //Child/Nested Routes
   <br> <a routerLink="product">Product</a> <br>
-  <router-outlet></router-outlet> 
-
-
+  <router-outlet></router-outlet>
+  <br> <hr> <br>
+  //Query String
+  <br> <a routerLink="a" [queryParams]="{x : 3}">A</a> & <a routerLink="b" [queryParams]="bquerystring" queryParamsHandling="merge">B</a> <br>
+  <router-outlet></router-outlet>
 `,
   styles: [".active{color:red;}"],
 })
@@ -203,5 +205,10 @@ export class AppComponent {
   //html 5 routing
   go() {
     history.pushState({ message: "Hello" }, "title", "/a/b");
+  }
+
+  //query string 
+  bquerystring : any = {
+    ahmet: "mehmet"
   }
 }
