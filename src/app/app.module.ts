@@ -17,6 +17,10 @@ import { Child3Component } from './child_to_child/child3/child3.component';
 import { Child31Component } from './child_to_child/child31/child31.component';
 import { ExampleComponent } from './component/example/example.component';
 import { AProductService, BProductService, ProductService } from './productservice';
+import { AComponent } from './component/a/a.component';
+import { BComponent } from './component/b/b.component';
+import { CreateUserComponent } from './component/create-user/create-user.component';
+import { ReadUserComponent } from './component/read-user/read-user.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +36,11 @@ import { AProductService, BProductService, ProductService } from './productservi
     Parent3Component,
     Child3Component,
     Child31Component,
-    ExampleComponent
+    ExampleComponent,
+    AComponent,
+    BComponent,
+    CreateUserComponent,
+    ReadUserComponent
   ],
   imports: [
     BrowserModule,

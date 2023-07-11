@@ -2,6 +2,7 @@ import { Component, Inject, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, NgForm, Validators } from '@angular/forms';
 import { capitalLetterPValidation, capitalLetterValidation, matchPassword } from './validators/funcs';
 import { AProductService, ProductService, ProductServiceNoProviders } from './productservice';
+import { RandomService } from './random.service';
 
 @Component({
   selector: 'app-root',
@@ -81,6 +82,14 @@ import { AProductService, ProductService, ProductServiceNoProviders } from './pr
     </div>
     <button>Send</button>
   </form>
+  <br>
+  //RandomService Self SelfSkip Optional Decorator Test
+  <br> AppComponent - > {{randomService.random}} <br>
+  <app-a></app-a>
+  <br>
+  <hr>
+  <app-create-user></app-create-user> <br>
+  <app-read-user></app-read-user>
 `,
 })
 export class AppComponent {
@@ -104,11 +113,12 @@ export class AppComponent {
 
   frmm!: FormGroup;
   constructor(private formBuilder: FormBuilder,
+    public randomService: RandomService,
     private productService: ProductService,
     private productNoProviders: ProductServiceNoProviders,
     @Inject("example") value: string,
     @Inject("funcExample") functionExample: Function,
-    @Inject("AProductService") private AProductService : AProductService){
+    @Inject("AProductService") private AProductService: AProductService) {
     //@Inject("productService") private productService: ProductService //string token injected
     //@Inject(productServiceIT) private productService: PorductService //injection token injected
     console.log(value);
@@ -120,7 +130,7 @@ export class AppComponent {
     console.log(productNoProviders.getProductsNoProviders());
 
     this.frmm = formBuilder.group({
-      name: ["",[Validators.required, Validators.minLength(3), capitalLetterValidation]],
+      name: ["", [Validators.required, Validators.minLength(3), capitalLetterValidation]],
       surname: ["", [Validators.required, capitalLetterPValidation(3)]],
       email: ["", [Validators.required, Validators.email]],
       tel: [""],
@@ -132,7 +142,7 @@ export class AppComponent {
       password: formBuilder.group({
         password: ["", Validators.required],
         passwordConfirm: ["", Validators.required]
-      }, {validators: [matchPassword()]}),
+      }, { validators: [matchPassword()] }),
     })
 
     this.frmm.valueChanges.subscribe({
@@ -148,27 +158,27 @@ export class AppComponent {
     })
   }
 
-  
-  get name(){
+
+  get name() {
     return this.frmm.get("name");
   }
 
-  get surname(){
+  get surname() {
     return this.frmm.get("surname");
   }
 
-  get email(){
+  get email() {
     return this.frmm.get("email");
   }
 
-  public get password(){
+  public get password() {
     return this.frmm.get("password");
   }
 
-  public get passwordConfirm(){
+  public get passwordConfirm() {
     return this.frmm.get("passwordConfirm");
   }
-  
+
 
   submitFonkModel() {
     console.log(this.frmm.value);
