@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './component/home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CustomIfDirective } from './custom-if.directive';
 import { ExampleDirective } from './example.directive';
@@ -21,6 +21,11 @@ import { AComponent } from './component/a/a.component';
 import { BComponent } from './component/b/b.component';
 import { CreateUserComponent } from './component/create-user/create-user.component';
 import { ReadUserComponent } from './component/read-user/read-user.component';
+import { AboutComponent } from './component/about/about.component';
+import { ContactComponent } from './component/contact/contact.component';
+import { ROUTES, RouterModule } from '@angular/router';
+import { routes } from './routes/route';
+import { ErrorComponent } from './component/error/error.component';
 
 @NgModule({
   declarations: [
@@ -40,13 +45,17 @@ import { ReadUserComponent } from './component/read-user/read-user.component';
     AComponent,
     BComponent,
     CreateUserComponent,
-    ReadUserComponent
+    ReadUserComponent,
+    AboutComponent,
+    ContactComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    //RouterModule.forRoot(routes)
   ],
   providers: [ProductService,//DI Token - default type token
     {provide: "example", useValue: "merhaba"},

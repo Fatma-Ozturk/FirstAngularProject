@@ -89,8 +89,17 @@ import { RandomService } from './random.service';
   <br>
   <hr>
   <app-create-user></app-create-user> <br>
-  <app-read-user></app-read-user>
+  <app-read-user></app-read-user> <br> 
+  //Routing
+  <br> <a routerLinkActive="active" routerLink="home">Home</a> | <a routerLink="about">About</a> | <a routerLink="contact">Contact</a>
+  <br>
+  <router-outlet></router-outlet>
+  <br> <hr>
+  <button (click)="go()">Go</button>
+
+
 `,
+styles: [".active{color:red;}"],
 })
 export class AppComponent {
   title = 'FirstAngularProject';
@@ -182,5 +191,10 @@ export class AppComponent {
 
   submitFonkModel() {
     console.log(this.frmm.value);
+  }
+
+  //html 5 routing
+  go() {
+      history.pushState({message: "Hello"}, "title", "/a/b");
   }
 }
