@@ -6,6 +6,8 @@ import { ContactComponent } from './component/contact/contact.component';
 import { ErrorComponent } from './component/error/error.component';
 import { ProductComponent } from './component/product/product.component';
 import { ProductDetailComponent } from './component/product-detail/product-detail.component';
+import { ProductSpecComponent } from './component/product-spec/product-spec.component';
+import { ProductOverviewComponent } from './component/product-overview/product-overview.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "/home", pathMatch: "full"},
@@ -15,7 +17,10 @@ const routes: Routes = [
 	{ path: "contact", component: ContactComponent},
   
   {path: "product", component: ProductComponent, 
-    children: [{path: "detail/:id", component: ProductDetailComponent}]},
+    children: [{path: "detail/:id", component: ProductDetailComponent,
+      children: [{path: "", redirectTo:"overview", pathMatch: 'full'},
+        {path: "spec", component: ProductSpecComponent}, 
+        {path: "overview", component: ProductOverviewComponent}]}]},
   
 	{ path: "**", component: ErrorComponent},
 ];

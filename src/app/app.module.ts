@@ -28,6 +28,8 @@ import { routes } from './routes/route';
 import { ErrorComponent } from './component/error/error.component';
 import { ProductComponent } from './component/product/product.component';
 import { ProductDetailComponent } from './component/product-detail/product-detail.component';
+import { ProductSpecComponent } from './component/product-spec/product-spec.component';
+import { ProductOverviewComponent } from './component/product-overview/product-overview.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,9 @@ import { ProductDetailComponent } from './component/product-detail/product-detai
     ContactComponent,
     ErrorComponent,
     ProductComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    ProductSpecComponent,
+    ProductOverviewComponent
   ],
   imports: [
     BrowserModule,
