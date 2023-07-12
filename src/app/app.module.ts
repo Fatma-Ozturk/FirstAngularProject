@@ -32,6 +32,8 @@ import { ProductSpecComponent } from './component/product-spec/product-spec.comp
 import { ProductOverviewComponent } from './component/product-overview/product-overview.component';
 import { AqueryComponent } from './component/aquery/aquery.component';
 import { BqueryComponent } from './component/bquery/bquery.component';
+import { AdminComponent } from './component/admin/admin.component';
+import { UserComponent } from './component/user/user.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +62,9 @@ import { BqueryComponent } from './component/bquery/bquery.component';
     ProductSpecComponent,
     ProductOverviewComponent,
     AqueryComponent,
-    BqueryComponent
+    BqueryComponent,
+    AdminComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,

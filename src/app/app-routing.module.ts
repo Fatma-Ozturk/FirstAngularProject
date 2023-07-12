@@ -10,6 +10,9 @@ import { ProductSpecComponent } from './component/product-spec/product-spec.comp
 import { ProductOverviewComponent } from './component/product-overview/product-overview.component';
 import { AqueryComponent } from './component/aquery/aquery.component';
 import { BqueryComponent } from './component/bquery/bquery.component';
+import { canActivateChildGuard, canActivateGuard, canDeactivateGuard, isAdminGuard, isUserGuard, resolveGuard } from './guards/guards';
+import { AdminComponent } from './component/admin/admin.component';
+import { UserComponent } from './component/user/user.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "/home", pathMatch: "full"},
@@ -17,9 +20,11 @@ const routes: Routes = [
   { path: "home/:fatma", component: HomeComponent},
 	{ path: "about", component: AboutComponent},
 	{ path: "contact", component: ContactComponent},
+  { path: "dashboard", component: AdminComponent, canMatch: [isAdminGuard]},
+  { path: "dashboard", component: UserComponent, canMatch: [isUserGuard]}, 
   
-  {path: "product", component: ProductComponent, 
-    children: [{path: "detail/:id", component: ProductDetailComponent,
+  {path: "product", component: ProductComponent, data: {key1: "value1", key2: "value2"}, canActivate:[canActivateGuard], canDeactivate:[canDeactivateGuard], resolve: {photos: resolveGuard},
+    children: [{path: "detail/:id", component: ProductDetailComponent, canActivateChild:[canActivateChildGuard],
       children: [{path: "", redirectTo:"overview", pathMatch: 'full'},
         {path: "spec", component: ProductSpecComponent}, 
         {path: "overview", component: ProductOverviewComponent}]}]},

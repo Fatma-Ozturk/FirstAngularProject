@@ -94,6 +94,7 @@ import { RandomService } from './random.service';
   <br> 
   <a routerLinkActive="active" routerLink="home">Home</a> |
   <a routerLink="about">About</a> |
+  <a routerLink="dashboard">Dashboard</a> |
   <a routerLink="contact">Contact</a>
   <br>
   <router-outlet></router-outlet>
@@ -101,7 +102,7 @@ import { RandomService } from './random.service';
   <button (click)="go()">Go</button> <br>
   <hr> <br>
   //Child/Nested Routes
-  <br> <a routerLink="product">Product</a> <br>
+  <br> <a routerLink="product" [state]="{key3: 'value3', key4: 'value4'}">Product</a> <br>
   <router-outlet></router-outlet>
   <br> <hr> <br>
   //Query String
