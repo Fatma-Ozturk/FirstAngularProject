@@ -108,6 +108,10 @@ import { RandomService } from './random.service';
   //Query String
   <br> <a routerLink="a" [queryParams]="{x : 3}">A</a> & <a routerLink="b" [queryParams]="bquerystring" queryParamsHandling="merge">B</a> <br>
   <router-outlet></router-outlet>
+  <br> <hr> <br>
+  //Lazy Loading
+  <br> <a routerLink="deneme">Deneme</a> | <a routerLink="custom">Custom</a> <br>
+  <router-outlet></router-outlet>
 `,
   styles: [".active{color:red;}"],
 })

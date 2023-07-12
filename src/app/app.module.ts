@@ -34,6 +34,8 @@ import { AqueryComponent } from './component/aquery/aquery.component';
 import { BqueryComponent } from './component/bquery/bquery.component';
 import { AdminComponent } from './component/admin/admin.component';
 import { UserComponent } from './component/user/user.component';
+import { CustomModule } from './custom/custom.module';
+import { DenemeModule } from './deneme/deneme.module';
 
 @NgModule({
   declarations: [
@@ -70,7 +72,7 @@ import { UserComponent } from './component/user/user.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
     //RouterModule.forRoot(routes)
   ],
   providers: [ProductService,//DI Token - default type token

@@ -32,6 +32,10 @@ const routes: Routes = [
   {path: "a", component: AqueryComponent},
   {path: "b", component: BqueryComponent},
 
+  //lazy loading
+  {path: "deneme", loadChildren: () => import("../app/deneme/deneme.module").then(m => m.DenemeModule)}, 
+  {path: "custom", loadChildren: () => import("../app/custom/custom.module").then(m => m.CustomModule )}, 
+
 
   
 	{ path: "**", component: ErrorComponent},
