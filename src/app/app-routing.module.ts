@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './component/home/home.component';
 import { AboutComponent } from './component/about/about.component';
 import { ContactComponent } from './component/contact/contact.component';
@@ -13,6 +13,7 @@ import { BqueryComponent } from './component/bquery/bquery.component';
 import { canActivateChildGuard, canActivateGuard, canDeactivateGuard, isAdminGuard, isUserGuard, resolveGuard } from './guards/guards';
 import { AdminComponent } from './component/admin/admin.component';
 import { UserComponent } from './component/user/user.component';
+import { CustomStrategy } from './strategies/custom.strategy';
 
 const routes: Routes = [
   { path: "", redirectTo: "/home", pathMatch: "full"},
@@ -33,8 +34,8 @@ const routes: Routes = [
   {path: "b", component: BqueryComponent},
 
   //lazy loading
-  {path: "deneme", loadChildren: () => import("../app/deneme/deneme.module").then(m => m.DenemeModule)}, 
-  {path: "custom", loadChildren: () => import("../app/custom/custom.module").then(m => m.CustomModule )}, 
+  {path: "deneme", loadChildren: () => import("../app/deneme/deneme.module").then(m => m.DenemeModule), data:{preload:true}}, 
+  {path: "custom", loadChildren: () => import("../app/custom/custom.module").then(m => m.CustomModule), data:{preload:false}}, 
 
 
   
@@ -42,7 +43,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {enableTracing: true, useHash: true})],
+  //imports: [RouterModule.forRoot(routes, {enableTracing: true, useHash: true})],
+  //imports: [RouterModule.forRoot(routes, {preloadingStrategy : PreloadAllModules})],
+  imports: [RouterModule.forRoot(routes, {preloadingStrategy : CustomStrategy})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

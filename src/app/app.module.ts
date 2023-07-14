@@ -36,6 +36,7 @@ import { AdminComponent } from './component/admin/admin.component';
 import { UserComponent } from './component/user/user.component';
 import { CustomModule } from './custom/custom.module';
 import { DenemeModule } from './deneme/deneme.module';
+import { CustomStrategy } from './strategies/custom.strategy';
 
 @NgModule({
   declarations: [
@@ -75,7 +76,7 @@ import { DenemeModule } from './deneme/deneme.module';
     ReactiveFormsModule
     //RouterModule.forRoot(routes)
   ],
-  providers: [ProductService,//DI Token - default type token
+  providers: [CustomStrategy,  ProductService,//DI Token - default type token
     {provide: "example", useValue: "merhaba"},
     {provide: "funcExample", useValue: () => {
       return "hello";
