@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, FormsModule, NgForm, Validators } from '@angula
 import { capitalLetterPValidation, capitalLetterValidation, matchPassword } from './validators/funcs';
 import { AProductService, ProductService, ProductServiceNoProviders } from './productservice';
 import { RandomService } from './random.service';
+import { StandaloneComponent } from './component/standalone/standalone.component';
 
 @Component({
   selector: 'app-root',
@@ -112,8 +113,13 @@ import { RandomService } from './random.service';
   //Lazy Loading
   <br> <a routerLink="deneme">Deneme</a> | <a routerLink="custom">Custom</a> <br>
   <router-outlet></router-outlet>
+  <br> <hr> <br>
+  //Standalone Component
+  <br> <app-standalone></app-standalone> <br>
+  <a routerLink="standalone">Standalone</a> <br>
+  <router-outlet></router-outlet>
 `,
-  styles: [".active{color:red;}"],
+  styles: [".active{color:red;}"],  
 })
 export class AppComponent {
   title = 'FirstAngularProject';

@@ -37,6 +37,7 @@ import { UserComponent } from './component/user/user.component';
 import { CustomModule } from './custom/custom.module';
 import { DenemeModule } from './deneme/deneme.module';
 import { CustomStrategy } from './strategies/custom.strategy';
+import { StandaloneComponent } from './component/standalone/standalone.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +74,8 @@ import { CustomStrategy } from './strategies/custom.strategy';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    StandaloneComponent
     //RouterModule.forRoot(routes)
   ],
   providers: [CustomStrategy,  ProductService,//DI Token - default type token

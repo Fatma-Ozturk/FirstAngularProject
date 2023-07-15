@@ -36,6 +36,7 @@ const routes: Routes = [
   //lazy loading
   {path: "deneme", loadChildren: () => import("../app/deneme/deneme.module").then(m => m.DenemeModule), data:{preload:true}}, 
   {path: "custom", loadChildren: () => import("../app/custom/custom.module").then(m => m.CustomModule), data:{preload:false}}, 
+  {path: "standalone", loadComponent: () => import("../app/component/standalone/standalone.component").then(s => s.StandaloneComponent) }, 
 
 
   
